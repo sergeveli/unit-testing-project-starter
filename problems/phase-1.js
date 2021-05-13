@@ -3,8 +3,9 @@
 */
 function isFive(num) {
  if (num === 5) {
-   return 5;
+   return true;
  }
+ return false
 }
 
 /*2. Is Odd Write a function isOdd that takes in a number as an argument and
@@ -14,7 +15,7 @@ function isOdd(number) {
   if (typeof number !== 'number'){
     throw Error('some error')
   }
-  return (number % 2 === 0);
+  return (number % 2 !== 0);
 }
 
 /*3. Array  of the Range Write a function myRange(min, max, step) that takes in
@@ -23,11 +24,19 @@ function isOdd(number) {
 */
 
 function myRange(min, max, step=1) {
-  const array = []
-  for (let i = min; i <= max; i++) {
+  if(typeof min !== 'number'){
+    throw Error('Error')
+  } else if (typeof max !== 'number'){
+    throw Error('Error')
+  } else if(typeof step !== 'number'){
+    throw Error('Error')
+  } else {
+    const array = []
+  for (let i = min; i <= max; i+=step) {
     array.push(i);  
   }
   return array
+  }
 }
 /*4. Fizz Buzz Define a function fizzBuzz(max) that takes a number and prints
    every number from 0 to max (not inclusive) that is divisible by either 3 or
@@ -39,14 +48,12 @@ function fizzBuzz(max) {
     throw TypeError('needs to be a number')
   }
   if (max < 0){
-    throw new Error
+    throw new RangeError
   }
 
   const array = []
   for (let i = 0; i < max; i += 1) {
-    if (i % 3 === 0 || i % 5 !== 0) {
-      array.push(i);
-    } else if (i % 5 === 0 || i % 3 !== 0) {
+    if ((i % 3 === 0 || i % 5 === 0) && !(i % 5 === 0 && i % 3 === 0)) {
       array.push(i);
     }
   }
